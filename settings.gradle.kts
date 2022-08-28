@@ -13,4 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "JetpackComposeBaseArch"
-include ':app'
+include(":app")
+
