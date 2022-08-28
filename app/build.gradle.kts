@@ -1,5 +1,6 @@
 import dev.roshana.buildsrc.BuildTypes
 import dev.roshana.buildsrc.ConfigData
+import dev.roshana.buildsrc.Dependencies
 
 plugins {
     id("com.android.application")
@@ -61,21 +62,23 @@ android {
 dependencies {
 
     dependencies {
-        implementation("androidx.core:core-ktx:1.7.0")
-        implementation("androidx.compose.ui:ui:${rootProject.extra["compose_version"]}")
-        implementation("androidx.compose.material:material:${rootProject.extra["compose_version"]}")
-        implementation("androidx.compose.ui:ui-tooling-preview:${rootProject.extra["compose_version"]}")
-        implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
-        implementation("androidx.activity:activity-compose:1.4.0")
-        testImplementation("junit:junit:4.13.2")
-        androidTestImplementation("androidx.test.ext:junit:1.1.3")
-        androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-        androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_version"]}")
-        debugImplementation("androidx.compose.ui:ui-tooling:${rootProject.extra["compose_version"]}")
-        debugImplementation("androidx.compose.ui:ui-test-manifest:${rootProject.extra["compose_version"]}")
-        
-        implementation(dev.roshana.buildsrc.Dependencies.hilt)
-        kapt(dev.roshana.buildsrc.Dependencies.hiltCompiler)
+        implementation(Dependencies.coreKtx)
+        implementation(Dependencies.composeUi)
+        implementation(Dependencies.composeMaterial)
+        implementation(Dependencies.composeUiPreview)
+        implementation(Dependencies.androidxLifeCycle)
+        implementation(Dependencies.composeActivity)
+
+        testImplementation(Dependencies.junit)
+        androidTestImplementation(Dependencies.extJunit)
+        androidTestImplementation(Dependencies.espresso)
+        androidTestImplementation(Dependencies.composeUiJunit)
+        debugImplementation(Dependencies.composeUiTooling)
+        debugImplementation(Dependencies.composeUiTestManifest)
+
+        /*hilt*/
+        implementation(Dependencies.hilt)
+        kapt(Dependencies.hiltCompiler)
 
     }
 
