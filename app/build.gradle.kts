@@ -62,24 +62,30 @@ android {
 dependencies {
 
     dependencies {
-        implementation(Dependencies.coreKtx)
-        implementation(Dependencies.composeUi)
-        implementation(Dependencies.composeMaterial)
-        implementation(Dependencies.composeUiPreview)
-        implementation(Dependencies.androidxLifeCycle)
-        implementation(Dependencies.composeActivity)
+        implementation(Dependencies.ComposeLibs.coreKtx)
 
-        testImplementation(Dependencies.junit)
-        androidTestImplementation(Dependencies.extJunit)
-        androidTestImplementation(Dependencies.espresso)
-        androidTestImplementation(Dependencies.composeUiJunit)
-        debugImplementation(Dependencies.composeUiTooling)
-        debugImplementation(Dependencies.composeUiTestManifest)
+        /** compose
+         **/
+        implementation(Dependencies.ComposeLibs.composeUi)
+        implementation(Dependencies.ComposeLibs.composeMaterial)
+        implementation(Dependencies.ComposeLibs.composeUiPreview)
+        implementation(Dependencies.ComposeLibs.androidxLifeCycle)
+        implementation(Dependencies.ComposeLibs.composeActivity)
 
-        /*hilt*/
-        implementation(Dependencies.hilt)
-        kapt(Dependencies.hiltCompiler)
+        /** hilt
+         **/
+        implementation(Dependencies.CommonLibs.hilt)
+        kapt(Dependencies.CommonLibs.hiltCompiler)
 
+
+        /** testing
+         **/
+        testImplementation(Dependencies.TestLibs.junit)
+        androidTestImplementation(Dependencies.TestLibs.extJunit)
+        androidTestImplementation(Dependencies.TestLibs.espresso)
+        androidTestImplementation(Dependencies.TestLibs.composeUiJunit)
+        debugImplementation(Dependencies.TestLibs.composeUiTooling)
+        debugImplementation(Dependencies.TestLibs.composeUiTestManifest)
     }
 
 }
