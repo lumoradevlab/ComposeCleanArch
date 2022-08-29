@@ -21,6 +21,11 @@ object Dependencies {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
         const val okHttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
+        const val kotlinSerialConverter =
+            "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.kotlinConverter}"
+        const val jsonSerialization =
+            "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.jsonSerialization}"
+
         const val stetho = "com.facebook.stetho:stetho:${Versions.stetho}"
         const val stetho_OkHttp = "com.facebook.stetho:stetho-okhttp3:${Versions.stetho}"
         const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"

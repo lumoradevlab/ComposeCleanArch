@@ -32,4 +32,6 @@ object Versions {
     const val coreKtx = "1.7.0"
     const val lifeCycle = "2.5.1"
     const val composeActivity = "1.4.0"
+    const val kotlinConverter = "0.8.0"
+    const val jsonSerialization = "1.3.3"
 }
