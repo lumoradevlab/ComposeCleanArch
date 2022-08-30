@@ -38,7 +38,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":domain"))
     implementation(Dependencies.ComposeLibs.coreKtx)
 
     /** hilt
@@ -52,7 +52,13 @@ dependencies {
     implementation(Dependencies.CommonLibs.retrofitGson)
     implementation(Dependencies.CommonLibs.okHttpInterceptor)
     implementation(Dependencies.CommonLibs.gson)
+    implementation(Dependencies.CommonLibs.kotlinSerialConverter)
+    implementation(Dependencies.CommonLibs.jsonSerialization)
 
-    implementation (Dependencies.CommonLibs.kotlinSerialConverter)
-    implementation (Dependencies.CommonLibs.jsonSerialization)
+    /** Coroutine
+     **/
+    implementation(Dependencies.CommonLibs.coroutines)
+    implementation(Dependencies.CommonLibs.coroutinesAndroid)
+    implementation(Dependencies.CommonLibs.coroutineAdapter)
+
 }

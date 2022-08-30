@@ -7,6 +7,8 @@ object Dependencies {
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         const val coroutinesAndroid =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+        const val coroutineAdapter =
+            "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:${Versions.coroutinesAdapter}"
         const val arrowCore = "io.arrow-kt:arrow-core:${Versions.arrow}"
         const val arrowSyntax = "io.arrow-kt:arrow-syntax:${Versions.arrow}"
         const val arrowMeta = "io.arrow-kt:arrow-meta:${Versions.arrow}"

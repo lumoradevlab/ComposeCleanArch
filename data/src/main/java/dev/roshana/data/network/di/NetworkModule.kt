@@ -1,116 +1,113 @@
 package dev.roshana.data.network.di
 
-import com.google.gson.GsonBuilder
+import android.app.Application
+import com.google.gson.Gson
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dev.roshana.data.BuildConfig
 import dev.roshana.data.network.api.ApiService
 import dev.roshana.data.network.utils.BASE_URL
-import dev.roshana.data.network.utils.ConnectivityInterceptor
-import kotlinx.serialization.ExperimentalSerializationApi
+import dev.roshana.domain.R.string
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.security.SecureRandom
-import java.security.cert.CertificateException
-import java.security.cert.X509Certificate
+import java.io.IOException
+import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
 
 @Module
 @InstallIn(Singleton::class)
 object NetworkModule {
 
+    @Provides
+    @Singleton
+    internal fun provideOkHttpClient(application: Application) = OkHttpClient.Builder()
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .addRoshanaInterceptor(application)
+        .addLoggerInterceptor()
+        .build()
+
+
+    /* @Provides
+     @Singleton
+     fun provideGson(): Gson = GsonFactory.instance.singletonGson*/
+
 
     @Provides
     @Singleton
-    private fun okHttpClient(): OkHttpClient.Builder {
-        val okHttpClient = OkHttpClient.Builder()
-        okHttpClient.connectTimeout(10, TimeUnit.SECONDS)
-        okHttpClient.readTimeout(30, TimeUnit.SECONDS)
-        okHttpClient.writeTimeout(30, TimeUnit.SECONDS)
+    internal fun provideRetrofit(application: Application, okHttpClient: OkHttpClient, gson: Gson) =
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .client(okHttpClient)
+            .build()
 
-        when {
-            BuildConfig.DEBUG -> {
-                val logging = HttpLoggingInterceptor()
-                logging.level = HttpLoggingInterceptor.Level.BODY
-                okHttpClient.addInterceptor(logging)
+
+    @Provides
+    @Singleton
+    internal fun provideApiService(retrofit: Retrofit) =
+        retrofit.create(ApiService::class.java)
+
+
+    /*
+    other api services
+    @Provides
+     @Singleton
+     internal fun provideTestService(retrofit: Retrofit) =
+         retrofit.create(TestService::class.java)*/
+
+
+    private fun OkHttpClient.Builder.addLoggerInterceptor() = apply {
+        if (BuildConfig.DEBUG) {
+            addNetworkInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+        }
+    }
+
+    private fun OkHttpClient.Builder.addRoshanaInterceptor(application: Application) = apply {
+        addInterceptor { chain ->
+            try {
+                handleChain(chain)
+            } catch (ioException: UnknownHostException) {
+                throw  IOException(application.getString(string.connectionError), ioException)
+            } catch (ioException: IOException) {
+                throw  IOException(
+                    application.getString(string.socketError),
+                    ioException
+                )
             }
         }
-        return okHttpClient
     }
 
-    @ExperimentalSerializationApi
-    @Singleton
-    @Provides
-    fun providesRetrofitAPI(): ApiService {
-        val httpClient = okHttpClient()
-        return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .baseUrl(BASE_URL)
-            .client(httpClient.build())
-            .build()
-            .create(ApiService::class.java)
-    }
-
-
-   /* @Singleton
-    @Provides
-    fun provideOkHttpWithSSL(connectivityInterceptor: ConnectivityInterceptor): OkHttpClient {
-        val trustAllCerts = arrayOf<TrustManager>(
-            object : X509TrustManager {
-                @Throws(CertificateException::class)
-                override fun checkClientTrusted(
-                    chain: Array<X509Certificate?>?,
-                    authType: String?
-                ) {
-                }
-
-                @Throws(CertificateException::class)
-                override fun checkServerTrusted(
-                    chain: Array<X509Certificate?>?,
-                    authType: String?
-                ) {
-                }
-
-                override fun getAcceptedIssuers(): Array<X509Certificate?>? {
-                    return arrayOf()
-                }
+    private fun handleChain(chain: Interceptor.Chain): Response {
+        return chain.request()
+            .newBuilder()
+            //.addGlobalHeaders()
+            //.addToken()
+            .build().let {
+                chain.proceed(it)
             }
-        )
-        val sslContext = SSLContext.getInstance("SSL")
-        sslContext.init(null, trustAllCerts, SecureRandom())
-        val sslSocketFactory = sslContext.socketFactory
-
-        val builder = OkHttpClient.Builder()
-        builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
-        builder.hostnameVerifier { _, _ -> true }
-        builder.addInterceptor(connectivityInterceptor)
-        builder.addInterceptor(HttpLoggingInterceptor().apply {
-            this.level = HttpLoggingInterceptor.Level.BODY
-        })
-        builder.connectTimeout(1, TimeUnit.MINUTES)
-        builder.readTimeout(1, TimeUnit.MINUTES)
-        builder.writeTimeout(1, TimeUnit.MINUTES)
-
-        return builder.build()
-
     }
 
-    @Provides
-    @Singleton
-    fun provideRetrofitBase(client: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build()
-    }*/
+    /* private fun Request.Builder.addGlobalHeaders() = apply {
+         globalHeaders.forEach { (key, value) ->
+             addHeader(key, value)
+         }
+     }
 
-
+     private fun Request.Builder.addToken() = apply {
+        getToken().takeIf { it.isNotEmpty() }?.let {
+             addHeader("Authorization", "Token $it")
+         }
+     }*/
 }

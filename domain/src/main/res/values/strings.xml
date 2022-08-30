@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">JetpackComposeBaseArch</string>
     <string name="connectionError">اینترنت خود را بررسی نمایید و دوباره امتحان کنید</string>
     <string name="socketError">متاسفانه ارتباط با سرور دچار اخلال شده است لطفا مجددا تلاش کنید</string>
 </resources>
