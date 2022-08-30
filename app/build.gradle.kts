@@ -6,7 +6,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-android")
-    //id("kotlin-android-extensions")
+    id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
 }
 
