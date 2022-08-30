@@ -6,6 +6,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.Coroutin
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import dev.roshana.data.BuildConfig
 import dev.roshana.data.network.api.ApiService
 import dev.roshana.data.network.utils.BASE_URL
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-@InstallIn(Singleton::class)
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Provides

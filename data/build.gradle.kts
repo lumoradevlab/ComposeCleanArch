@@ -39,7 +39,11 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+
+    /** compose
+     **/
     implementation(Dependencies.ComposeLibs.coreKtx)
+    implementation(Dependencies.ComposeLibs.composePaging)
 
     /** hilt
      **/

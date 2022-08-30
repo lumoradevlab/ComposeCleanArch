@@ -6,6 +6,7 @@ object Versions {
     const val gradle = "7.2.2"
     const val activityCompose = "1.4.0"
     const val composeViewModel = "2.4.1"
+    const val composePaging = "1.0.0-alpha16"
     const val arrow = "0.10.4"
     const val kt_lint = "0.37.2"
     const val coroutines = "1.3.3"

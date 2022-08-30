@@ -48,6 +48,8 @@ object Dependencies {
             "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeViewModel}"
         const val androidxLifeCycle =
             "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycle}"
+
+        const val composePaging = "androidx.paging:paging-compose:${Versions.composePaging}"
     }
 
     object TestLibs {
