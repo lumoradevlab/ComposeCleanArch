@@ -19,6 +19,9 @@ object Dependencies {
             "com.google.dagger:dagger-android-processor:${Versions.dagger}"
         const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+        const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltViewModel}"
+        const val hiltViewModelKapt = "androidx.hilt:hilt-compiler:${Versions.hiltViewModel}"
+
         const val gson = "com.google.code.gson:gson:${Versions.gson}"
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
@@ -48,8 +51,9 @@ object Dependencies {
             "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeViewModel}"
         const val androidxLifeCycle =
             "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycle}"
-
+        const val composeNav = "androidx.navigation:navigation-compose:${Versions.composeNav}"
         const val composePaging = "androidx.paging:paging-compose:${Versions.composePaging}"
+        const val composeHilt = "androidx.hilt:hilt-navigation-compose:${Versions.composeHilt}"
     }
 
     object TestLibs {

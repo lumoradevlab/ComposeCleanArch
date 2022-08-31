@@ -5,6 +5,7 @@ import dev.roshana.buildsrc.Dependencies
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
 }
 
@@ -43,7 +44,6 @@ dependencies {
     implementation(project(":data"))
 
     implementation(Dependencies.ComposeLibs.coreKtx)
-    implementation(Dependencies.ComposeLibs.composePaging)
 
     /** compose
      **/
@@ -52,11 +52,20 @@ dependencies {
     implementation(Dependencies.ComposeLibs.composeUiPreview)
     implementation(Dependencies.ComposeLibs.androidxLifeCycle)
     implementation(Dependencies.ComposeLibs.composeActivity)
+    implementation(Dependencies.ComposeLibs.composeHilt)
+    implementation(Dependencies.ComposeLibs.composeNav)
+    implementation(Dependencies.ComposeLibs.composePaging)
 
-    /** hilt
+
+    /** hilt - dagger
      **/
+    implementation(Dependencies.CommonLibs.daggerAndroid)
+    kapt(Dependencies.CommonLibs.daggerCompiler)
+    kapt(Dependencies.CommonLibs.daggerAndroidCompiler)
     implementation(Dependencies.CommonLibs.hilt)
     kapt(Dependencies.CommonLibs.hiltCompiler)
+    implementation(Dependencies.CommonLibs.hiltViewModel)
+    kapt(Dependencies.CommonLibs.hiltViewModelKapt)
 
     /** Coroutine
      **/

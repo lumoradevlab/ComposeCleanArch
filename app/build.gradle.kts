@@ -63,6 +63,9 @@ android {
 dependencies {
 
     dependencies {
+        implementation(project(":domain"))
+        implementation(project(":presentation"))
+
         implementation(Dependencies.ComposeLibs.coreKtx)
 
         /** compose
@@ -72,12 +75,21 @@ dependencies {
         implementation(Dependencies.ComposeLibs.composeUiPreview)
         implementation(Dependencies.ComposeLibs.androidxLifeCycle)
         implementation(Dependencies.ComposeLibs.composeActivity)
+        implementation(Dependencies.ComposeLibs.composeNav)
+        implementation(Dependencies.ComposeLibs.composeHilt)
+        implementation(Dependencies.ComposeLibs.composePaging)
 
-        /** hilt
+
+
+        /** hilt - dagger
          **/
+        implementation(Dependencies.CommonLibs.daggerAndroid)
+        kapt(Dependencies.CommonLibs.daggerCompiler)
+        kapt(Dependencies.CommonLibs.daggerAndroidCompiler)
         implementation(Dependencies.CommonLibs.hilt)
+        implementation(Dependencies.CommonLibs.hiltViewModel)
         kapt(Dependencies.CommonLibs.hiltCompiler)
-
+        kapt(Dependencies.CommonLibs.hiltViewModelKapt)
 
         /** testing
          **/

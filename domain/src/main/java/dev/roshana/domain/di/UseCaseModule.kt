@@ -12,9 +12,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
 
-    @Provides
+    /*@Provides
     @Singleton
     internal fun providesArticleUseCase(
         articleRepository: ArticleRepository
-    ) = ArticleUseCase(articleRepository)
+    ) = ArticleUseCase(articleRepository)*/
+
+    @Provides
+    @Singleton
+    fun providesCharactersUseCase(articleRepository: ArticleRepository) =
+        ArticleUseCase(articleRepository)
 }

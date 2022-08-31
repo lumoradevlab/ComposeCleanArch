@@ -10,8 +10,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dev.roshana.jetpackcomposebasearch.ui.theme.JetpackComposeBaseArchTheme
+import dev.roshana.presentation.articleList.ArticleListViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -33,7 +35,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+    val viewModel: ArticleListViewModel = hiltViewModel()
+    val state = viewModel.characterListState.value
+    Text(text = "Hello ${state.errorMessage}!")
 }
 
 @Preview(showBackground = true)

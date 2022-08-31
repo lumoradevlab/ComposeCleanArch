@@ -45,8 +45,11 @@ dependencies {
     implementation(Dependencies.ComposeLibs.coreKtx)
     implementation(Dependencies.ComposeLibs.composePaging)
 
-    /** hilt
+    /** hilt - dagger
      **/
+    implementation(Dependencies.CommonLibs.daggerAndroid)
+    kapt(Dependencies.CommonLibs.daggerCompiler)
+    kapt(Dependencies.CommonLibs.daggerAndroidCompiler)
     implementation(Dependencies.CommonLibs.hilt)
     kapt(Dependencies.CommonLibs.hiltCompiler)
 
