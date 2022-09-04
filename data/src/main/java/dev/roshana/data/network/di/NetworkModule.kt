@@ -1,52 +1,35 @@
 package dev.roshana.data.network.di
 
+import android.app.Application
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.roshana.data.BuildConfig
 import dev.roshana.data.network.api.ApiService
 import dev.roshana.data.network.utils.BASE_URL
-import dev.roshana.domain.BuildConfig
-import kotlinx.serialization.ExperimentalSerializationApi
+import dev.roshana.domain.utils.getToken
+import dev.roshana.domain.utils.globalHeaders
+import dev.roshana.domain.R.string
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.security.SecureRandom
-import java.security.cert.CertificateException
-import java.security.cert.X509Certificate
+import java.io.IOException
+import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    /* @ExperimentalSerializationApi
-     private val converter = json.asConverterFactory("application/json".toMediaType())*/
 
-   /* private fun okHttpClient1(): OkHttpClient.Builder {
-        val okHttpClient = OkHttpClient.Builder()
-        okHttpClient.connectTimeout(10, TimeUnit.SECONDS)
-        okHttpClient.readTimeout(30, TimeUnit.SECONDS)
-        okHttpClient.writeTimeout(30, TimeUnit.SECONDS)
-
-        when {
-            BuildConfig.DEBUG -> {
-                val logging = HttpLoggingInterceptor()
-                logging.level = HttpLoggingInterceptor.Level.BODY
-                okHttpClient.addInterceptor(logging)
-            }
-        }
-
-        return okHttpClient
-    }*/
-
-    @Singleton
+/*    @Singleton
     @Provides
     fun provideOkHttp(): OkHttpClient {
 
@@ -88,19 +71,86 @@ object NetworkModule {
 
         return builder.build()
 
-    }
+    }*/
 
-    @ExperimentalSerializationApi
-    @Singleton
+
+    /*@ExperimentalSerializationApi
+       @Singleton
+       @Provides
+       fun providesAPI(client: OkHttpClient): ApiService {
+
+           return Retrofit.Builder()
+               .addConverterFactory(GsonConverterFactory.create())
+               .baseUrl(BASE_URL)
+               .client(client)
+               .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+               .build()
+               .create(ApiService::class.java)
+       }*/
     @Provides
-    fun providesAPI(client: OkHttpClient): ApiService {
+    @Singleton
+    internal fun provideOkHttpClient(application: Application) = OkHttpClient.Builder()
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .addRoshanaInterceptor(application)
+        .addLoggerInterceptor()
+        .build()
 
-        return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
+    @Provides
+    @Singleton
+    internal fun provideRetrofit(application: Application, okHttpClient: OkHttpClient) =
+        Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(client)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .client(okHttpClient)
             .build()
-            .create(ApiService::class.java)
+
+    @Provides
+    @Singleton
+    internal fun provideApiService(retrofit: Retrofit) =
+        retrofit.create(ApiService::class.java)
+
+    private fun OkHttpClient.Builder.addLoggerInterceptor() = apply {
+        if (BuildConfig.DEBUG) {
+            addNetworkInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+        }
     }
+
+    private fun OkHttpClient.Builder.addRoshanaInterceptor(application: Application) = apply {
+        addInterceptor { chain ->
+            try {
+                handleChain(chain)
+            } catch (ioException: UnknownHostException) {
+                throw  IOException(application.getString(string.connectionError), ioException)
+            } catch (ioException: IOException) {
+                throw  IOException(application.getString(string.socketError), ioException)
+            }
+        }
+    }
+
+    private fun handleChain(chain: Interceptor.Chain): Response {
+        return chain.request()
+            .newBuilder()
+            .addGlobalHeaders()
+            .addToken()
+            .build().let {
+                chain.proceed(it)
+            }
+    }
+
+    private fun Request.Builder.addGlobalHeaders() = apply {
+        globalHeaders.forEach { (key, value) ->
+            addHeader(key, value)
+        }
+    }
+
+    private fun Request.Builder.addToken() = apply {
+        getToken().takeIf { it.isNotEmpty() }?.let {
+            addHeader("Authorization", "Token $it")
+        }
+    }
+
 }
