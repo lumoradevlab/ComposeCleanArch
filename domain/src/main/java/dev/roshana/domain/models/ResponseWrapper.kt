@@ -1,9 +1,20 @@
 package dev.roshana.domain.models
 
-import com.google.gson.annotations.SerializedName
+import androidx.annotation.Keep
 
-data class ResponseWrapper<T : Any> (
-    @SerializedName("status") val status: String,
-    @SerializedName("total_results") val totalResults: Int,
-    @SerializedName("articles") val articles: T
-)
+@Keep
+class ResponseWrapper<T> {
+    @Keep
+    var status = ""
+
+    @Keep
+    var totalResults: String? = null
+
+    @Keep
+    var message: String? = null
+
+    @Keep
+    var articles: T? = null
+}
+
+

@@ -7,11 +7,12 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
+
     @GET(TOP_HEAD_LINES)
     suspend fun getTechCrunchNews(
         @Query("page") page: Int,
-        @Query("sources") sources: String = "techcrunch",
-        @Query("apikey") apiKey: String = "de196ac120164019a0911ea8191f85e4"
+        @Query("sources") sources: String,
+        @Query("apiKey") apiKey: String
     ): ResponseWrapper<List<ArticleDto>>
 
 

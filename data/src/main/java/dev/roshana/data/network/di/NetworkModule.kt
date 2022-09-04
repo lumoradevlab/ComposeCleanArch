@@ -111,6 +111,7 @@ object NetworkModule {
     internal fun provideApiService(retrofit: Retrofit) =
         retrofit.create(ApiService::class.java)
 
+
     private fun OkHttpClient.Builder.addLoggerInterceptor() = apply {
         if (BuildConfig.DEBUG) {
             addNetworkInterceptor(HttpLoggingInterceptor().apply {
@@ -134,6 +135,7 @@ object NetworkModule {
     private fun handleChain(chain: Interceptor.Chain): Response {
         return chain.request()
             .newBuilder()
+            .addHeader("X-Api-Key", "de196ac120164019a0911ea8191f85e4")
             .addGlobalHeaders()
             .addToken()
             .build().let {
