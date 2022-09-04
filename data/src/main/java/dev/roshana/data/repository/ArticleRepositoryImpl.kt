@@ -14,7 +14,6 @@ import javax.inject.Singleton
 
 @Singleton
 class ArticleRepositoryImpl @Inject constructor(
-    val appContext: Application,
     val apiService: ApiService
 ) : ArticleRepository {
     override suspend fun getTechCrunchNews(source: String?): Flow<PagingData<Article>> {

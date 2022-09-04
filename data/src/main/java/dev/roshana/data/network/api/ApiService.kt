@@ -10,7 +10,8 @@ interface ApiService {
     @GET(TOP_HEAD_LINES)
     suspend fun getTechCrunchNews(
         @Query("page") page: Int,
-        @Query("sources") sources: String = "techcrunch"
+        @Query("sources") sources: String = "techcrunch",
+        @Query("apikey") apiKey: String = "de196ac120164019a0911ea8191f85e4"
     ): ResponseWrapper<List<ArticleDto>>
 
 
