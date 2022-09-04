@@ -30,7 +30,7 @@ class ArticlePagingSource(
             LoadResult.Page(
                 data = items!!,
                 nextKey = nextKey,
-                prevKey = null
+                prevKey = prevKey
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

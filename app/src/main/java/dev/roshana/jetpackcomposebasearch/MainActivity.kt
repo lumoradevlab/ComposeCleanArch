@@ -41,7 +41,7 @@ fun Greeting(name: String) {
     val viewModel: ArticleListViewModel = hiltViewModel()
     val state = viewModel.articleListState.value
     val list = state.dataList?.collectAsLazyPagingItems()
-    val size = list?.itemSnapshotList?.size
+    val size = list?.itemSnapshotList?.items
     Text(text = "Hello ${size}!")
 }
 
