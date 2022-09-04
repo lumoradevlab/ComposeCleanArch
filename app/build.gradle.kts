@@ -6,7 +6,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-android")
-    id("com.google.dagger.hilt.android")
+    id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
 }
 
@@ -87,7 +87,7 @@ dependencies {
         kapt(Dependencies.CommonLibs.daggerCompiler)
         kapt(Dependencies.CommonLibs.daggerAndroidCompiler)
         implementation(Dependencies.CommonLibs.hilt)
-        implementation(Dependencies.CommonLibs.hiltViewModel)
+        //implementation(Dependencies.CommonLibs.hiltViewModel)
         kapt(Dependencies.CommonLibs.hiltCompiler)
         kapt(Dependencies.CommonLibs.hiltViewModelKapt)
 

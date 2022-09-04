@@ -1,5 +1,6 @@
 package dev.roshana.data.network.di
 
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,8 +13,14 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.security.SecureRandom
+import java.security.cert.CertificateException
+import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManager
+import javax.net.ssl.X509TrustManager
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -22,7 +29,7 @@ object NetworkModule {
     /* @ExperimentalSerializationApi
      private val converter = json.asConverterFactory("application/json".toMediaType())*/
 
-    private fun okHttpClient1(): OkHttpClient.Builder {
+   /* private fun okHttpClient1(): OkHttpClient.Builder {
         val okHttpClient = OkHttpClient.Builder()
         okHttpClient.connectTimeout(10, TimeUnit.SECONDS)
         okHttpClient.readTimeout(30, TimeUnit.SECONDS)
@@ -37,18 +44,62 @@ object NetworkModule {
         }
 
         return okHttpClient
+    }*/
+
+    @Singleton
+    @Provides
+    fun provideOkHttp(): OkHttpClient {
+
+        val trustAllCerts = arrayOf<TrustManager>(
+            object : X509TrustManager {
+                @Throws(CertificateException::class)
+                override fun checkClientTrusted(
+                    chain: Array<X509Certificate?>?,
+                    authType: String?
+                ) {
+                }
+
+                @Throws(CertificateException::class)
+                override fun checkServerTrusted(
+                    chain: Array<X509Certificate?>?,
+                    authType: String?
+                ) {
+                }
+
+                override fun getAcceptedIssuers(): Array<X509Certificate?>? {
+                    return arrayOf()
+                }
+            }
+        )
+        val sslContext = SSLContext.getInstance("SSL")
+        sslContext.init(null, trustAllCerts, SecureRandom())
+        val sslSocketFactory = sslContext.socketFactory
+
+        val builder = OkHttpClient.Builder()
+        builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
+        builder.hostnameVerifier { _, _ -> true }
+        //builder.addInterceptor(connectivityInterceptor)
+        builder.addInterceptor(HttpLoggingInterceptor().apply {
+            this.setLevel(HttpLoggingInterceptor.Level.BODY)
+        })
+        builder.connectTimeout(1, TimeUnit.MINUTES)
+        builder.readTimeout(1, TimeUnit.MINUTES)
+        builder.writeTimeout(1, TimeUnit.MINUTES)
+
+        return builder.build()
+
     }
 
     @ExperimentalSerializationApi
     @Singleton
     @Provides
-    fun providesAPI(): ApiService {
+    fun providesAPI(client: OkHttpClient): ApiService {
 
-        val httpClient = okHttpClient1()
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
-            .client(httpClient.build())
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build()
             .create(ApiService::class.java)
     }

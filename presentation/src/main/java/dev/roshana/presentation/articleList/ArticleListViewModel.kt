@@ -21,7 +21,7 @@ class ArticleListViewModel @Inject constructor(
     private val _articleListState: MutableState<ArticleListState> = mutableStateOf(
         ArticleListState()
     )
-    val characterListState: State<ArticleListState>
+    val articleListState: State<ArticleListState>
         get() = _articleListState
 
     private val handler = CoroutineExceptionHandler { _, exception ->

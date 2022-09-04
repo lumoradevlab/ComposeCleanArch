@@ -20,6 +20,6 @@ object UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesCharactersUseCase(articleRepository: ArticleRepository) =
+    fun providesArticlesUseCase(articleRepository: ArticleRepository) =
         ArticleUseCase(articleRepository)
 }

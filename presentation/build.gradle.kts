@@ -5,7 +5,7 @@ import dev.roshana.buildsrc.Dependencies
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.google.dagger.hilt.android")
+    id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
 }
 
@@ -64,7 +64,7 @@ dependencies {
     kapt(Dependencies.CommonLibs.daggerAndroidCompiler)
     implementation(Dependencies.CommonLibs.hilt)
     kapt(Dependencies.CommonLibs.hiltCompiler)
-    implementation(Dependencies.CommonLibs.hiltViewModel)
+    //implementation(Dependencies.CommonLibs.hiltViewModel)
     kapt(Dependencies.CommonLibs.hiltViewModelKapt)
 
     /** Coroutine
