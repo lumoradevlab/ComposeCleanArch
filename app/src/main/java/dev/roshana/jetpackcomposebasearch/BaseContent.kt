@@ -1,14 +1,18 @@
 package dev.roshana.jetpackcomposebasearch
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.roshana.jetpackcomposebasearch.navigation.Articles
 import dev.roshana.jetpackcomposebasearch.navigation.BottomNavigationBar
 import dev.roshana.jetpackcomposebasearch.navigation.Locations
+import dev.roshana.jetpackcomposebasearch.navigation.MainNavigation
 
 @ExperimentalMaterialApi
 @ExperimentalAnimationApi
@@ -25,6 +29,7 @@ fun BaseContent() {
         .currentBackStackEntryAsState().value?.destination?.route in bottomScreens
 
     Scaffold(
+        backgroundColor = Color.White,
         bottomBar = {
             if (showNavBar) {
                 BottomNavigationBar(navController)
@@ -32,6 +37,6 @@ fun BaseContent() {
         }
     ) { padding ->
 
-        //MainNavigation(navhostController = navController, modifier = Modifier.padding(padding))
+        MainNavigation(navHostController = navController, modifier = Modifier.padding(padding))
     }
 }

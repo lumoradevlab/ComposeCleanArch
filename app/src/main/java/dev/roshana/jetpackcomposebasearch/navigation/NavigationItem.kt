@@ -9,13 +9,13 @@ sealed class NavigationItem(
     @DrawableRes var icon: Int
 ) {
     object ArticlesScreen : NavigationItem(
-        title = "article",
+        title = "Article",
         screen_route = Articles.ARTICLESLIST,
         icon = R.drawable.ic_baseline_settings
     )
 
     object LocationsScreen : NavigationItem(
-        title = "locations",
+        title = "Locations",
         screen_route = Locations.LOCATIONLIST,
         R.drawable.ic_baseline_add_location
     )

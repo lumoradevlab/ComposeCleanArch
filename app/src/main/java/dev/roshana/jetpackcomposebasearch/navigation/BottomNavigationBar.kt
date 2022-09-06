@@ -18,7 +18,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -29,6 +28,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun BottomNavigationBar(navHostController: NavHostController) {
+
     val bottomScreens = listOf(
         NavigationItem.ArticlesScreen,
         NavigationItem.LocationsScreen,
@@ -37,10 +37,8 @@ fun BottomNavigationBar(navHostController: NavHostController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(56.dp)
-            .fillMaxWidth()
-            .padding(horizontal = 8.dp),
-        elevation = 8.dp
+            .height(80.dp),
+        backgroundColor = Color.LightGray
 
     ) {
         Row(
@@ -98,15 +96,12 @@ private fun CustomBottomNavItem(
     ) {
         Row(
             modifier = Modifier
-                .height(if (isSelected) 20.dp else 10.dp)
-                .shadow(
-                    elevation = if (isSelected) 15.dp else 0.dp,
-                    shape = RoundedCornerShape(20.dp)
-                )
+                .height(if (isSelected) 50.dp else 50.dp)
                 .background(
-                    color = MaterialTheme.colors.surface,
-                    shape = RoundedCornerShape(20.dp)
-                ),
+                    color = MaterialTheme.colors.onBackground,
+                    shape = RoundedCornerShape(5.dp)
+                )
+                .padding(horizontal = 5.dp, vertical = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
         ) {
@@ -116,7 +111,7 @@ private fun CustomBottomNavItem(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .fillMaxHeight()
-                    .padding(horizontal = 10.dp)
+                    .padding(horizontal = 5.dp)
                     .alpha(if (isSelected) 1f else .7f)
                     .size(animatedIconSize),
                 tint = if (isSelected) MaterialTheme.colors.primary else Color.Gray
