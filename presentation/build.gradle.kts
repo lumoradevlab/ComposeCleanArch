@@ -55,6 +55,7 @@ dependencies {
     implementation(Dependencies.ComposeLibs.composeHilt)
     implementation(Dependencies.ComposeLibs.composeNav)
     implementation(Dependencies.ComposeLibs.composePaging)
+    implementation(Dependencies.ComposeLibs.composeAnimNavigation)
 
 
     /** hilt - dagger

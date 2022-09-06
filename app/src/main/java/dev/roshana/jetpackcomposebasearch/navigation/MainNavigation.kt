@@ -1,19 +1,25 @@
 package dev.roshana.jetpackcomposebasearch.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import dev.roshana.presentation.articleUi.articleGraph
+import dev.roshana.presentation.navigation.Articles
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@OptIn(ExperimentalCoroutinesApi::class)
+@ExperimentalMaterialApi
+@ExperimentalAnimationApi
 @Composable
 fun MainNavigation(navHostController: NavHostController, modifier: Modifier = Modifier) {
-    NavHost(navHostController, startDestination = NavigationItem.ArticlesScreen.screen_route) {
-        composable(NavigationItem.ArticlesScreen.screen_route) {
 
-        }
-        composable(NavigationItem.LocationsScreen.screen_route) {
-
-        }
+    AnimatedNavHost(
+        navController = navHostController,
+        startDestination = Articles.ARTICLEGRAPH, modifier = modifier
+    ) {
+        articleGraph(navHostController = navHostController)
     }
 }

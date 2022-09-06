@@ -2,6 +2,8 @@ package dev.roshana.jetpackcomposebasearch.navigation
 
 import androidx.annotation.DrawableRes
 import dev.roshana.jetpackcomposebasearch.R
+import dev.roshana.presentation.navigation.Articles
+import dev.roshana.presentation.navigation.Locations
 
 sealed class NavigationItem(
     var title: String,

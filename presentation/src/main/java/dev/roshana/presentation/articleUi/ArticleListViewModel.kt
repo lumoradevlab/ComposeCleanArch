@@ -1,4 +1,4 @@
-package dev.roshana.presentation.articleList
+package dev.roshana.presentation.articleUi
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State

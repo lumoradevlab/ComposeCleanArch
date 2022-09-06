@@ -54,6 +54,7 @@ object Dependencies {
         const val composeNav = "androidx.navigation:navigation-compose:${Versions.composeNav}"
         const val composePaging = "androidx.paging:paging-compose:${Versions.composePaging}"
         const val composeHilt = "androidx.hilt:hilt-navigation-compose:${Versions.composeHilt}"
+        const val composeAnimNavigation = "com.google.accompanist:accompanist-navigation-animation:${Versions.composeAnimNav}"
     }
 
     object TestLibs {

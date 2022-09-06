@@ -9,16 +9,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import dev.roshana.jetpackcomposebasearch.navigation.Articles
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import dev.roshana.presentation.navigation.Articles
 import dev.roshana.jetpackcomposebasearch.navigation.BottomNavigationBar
-import dev.roshana.jetpackcomposebasearch.navigation.Locations
+import dev.roshana.presentation.navigation.Locations
 import dev.roshana.jetpackcomposebasearch.navigation.MainNavigation
 
 @ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
 fun BaseContent() {
-    val navController = rememberNavController()
+    val navController = rememberAnimatedNavController()
 
     val bottomScreens = listOf(
         Articles.ARTICLESLIST,

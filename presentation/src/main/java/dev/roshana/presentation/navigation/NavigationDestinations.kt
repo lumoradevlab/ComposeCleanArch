@@ -1,4 +1,4 @@
-package dev.roshana.jetpackcomposebasearch.navigation
+package dev.roshana.presentation.navigation
 
 object Articles {
     const val ARTICLEGRAPH = "article"

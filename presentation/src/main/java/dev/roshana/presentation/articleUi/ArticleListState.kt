@@ -1,4 +1,4 @@
-package dev.roshana.presentation.articleList
+package dev.roshana.presentation.articleUi
 
 import androidx.paging.PagingData
 import dev.roshana.domain.models.article.Article
