@@ -2,7 +2,7 @@ package dev.roshana.presentation.navigation
 
 object Articles {
     const val ARTICLEGRAPH = "article"
-    const val ARTICLESLIST = "articleList"
+    const val ARTICLESLIST = "articlelist"
     const val ARTICLEDETAILS = "articledetails"
 }
 

@@ -9,7 +9,7 @@ object Versions {
     const val composePaging = "1.0.0-alpha16"
     const val composeHilt = "1.0.0"
     const val composeNav = "2.5.1"
-    const val composeAnimNav = "0.16.0"
+    const val composeAnimNav = "0.20.2"
     const val arrow = "0.10.4"
     const val kt_lint = "0.37.2"
     const val coroutines = "1.3.3"

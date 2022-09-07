@@ -1,6 +1,7 @@
 import dev.roshana.buildsrc.BuildTypes
 import dev.roshana.buildsrc.ConfigData
 import dev.roshana.buildsrc.Dependencies
+import org.jetbrains.kotlin.config.JvmAnalysisFlags.useIR
 
 plugins {
     id("com.android.library")
@@ -29,12 +30,21 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerVersion = rootProject.extra["kotlin_version"] as String
+        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+        useIR
     }
 }
 

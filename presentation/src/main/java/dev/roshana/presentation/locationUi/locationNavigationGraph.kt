@@ -1,4 +1,4 @@
-package dev.roshana.presentation.articleUi
+package dev.roshana.presentation.locationUi
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.spring
@@ -9,25 +9,21 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
 import dev.roshana.presentation.navigation.Articles
+import dev.roshana.presentation.navigation.Locations
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
 @ExperimentalCoroutinesApi
 @ExperimentalAnimationApi
-fun NavGraphBuilder.articleGraph(
+fun NavGraphBuilder.locationGraph(
     navHostController: NavHostController
 ) {
     navigation(
-        startDestination = Articles.ARTICLESLIST,
-        route = Articles.ARTICLEGRAPH
+        startDestination = Locations.LOCATIONLIST,
+        route = Locations.LOCATIONGRAPH
     ) {
 
-        composable(
-            route = Articles.ARTICLESLIST,
-            enterTransition = { _, _ ->
-                slideInVertically(initialOffsetY = { +1000 }, animationSpec = spring())
-            },
-        ) {
+        composable(route = Locations.LOCATIONLIST){
 
         }
 
