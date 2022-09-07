@@ -15,6 +15,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalMaterialApi
 @ExperimentalCoroutinesApi
 @ExperimentalAnimationApi
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.locationGraph(
     navHostController: NavHostController
 ) {
@@ -24,7 +25,7 @@ fun NavGraphBuilder.locationGraph(
     ) {
 
         composable(route = Locations.LOCATIONLIST){
-
+            LocationScreen()
         }
 
 

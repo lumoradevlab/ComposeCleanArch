@@ -1,8 +1,6 @@
 package dev.roshana.presentation.articleUi
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.slideInVertically
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -11,6 +9,7 @@ import com.google.accompanist.navigation.animation.navigation
 import dev.roshana.presentation.navigation.Articles
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@OptIn(ExperimentalAnimationApi::class)
 @ExperimentalMaterialApi
 @ExperimentalCoroutinesApi
 @ExperimentalAnimationApi
@@ -23,12 +22,9 @@ fun NavGraphBuilder.articleGraph(
     ) {
 
         composable(
-            route = Articles.ARTICLESLIST,
-            enterTransition = { _, _ ->
-                slideInVertically(initialOffsetY = { +1000 }, animationSpec = spring())
-            },
+            route = Articles.ARTICLESLIST
         ) {
-
+            ArticlesListScreen()
         }
 
 
