@@ -40,4 +40,7 @@ object Versions {
     const val composeActivity = "1.4.0"
     const val kotlinConverter = "0.8.0"
     const val jsonSerialization = "1.3.3"
+    const val picasso = "2.8"
+    const val coil = "2.2.1"
+    const val coilImage = "1.6.1"
 }

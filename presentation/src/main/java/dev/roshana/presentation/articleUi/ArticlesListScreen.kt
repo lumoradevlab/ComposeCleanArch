@@ -49,12 +49,12 @@ fun ArticlesListScreen() {
             } else {
                 articles?.let { items ->
 
-                    //if (showColumn) {
+                    if (showColumn) {
                     ArticlesListColumn(items = items, listState = lazyListState) { articleId ->
 
                     }
                 }
-                //}
+                }
             }
         }
     }

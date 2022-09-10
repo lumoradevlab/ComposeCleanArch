@@ -1,6 +1,7 @@
 package dev.roshana.presentation.articleUi
 
-import androidx.compose.animation.*
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,35 +23,35 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalAnimationApi
 @Composable
 fun ArticleUI(article: Article, modifier: Modifier = Modifier, onClick: (Int) -> Unit) {
-    AnimatedVisibility(
 
-        visible = true,
-        enter = fadeIn(),
-        exit = fadeOut()
+    Card(
+        modifier = modifier
+            .animateContentSize()
+            .padding(8.dp)
+            .clickable {
+                onClick(article.hashCode())
+            },
+        shape = RoundedCornerShape(8.dp),
+        elevation = 8.dp
     ) {
-        Card(
-            modifier = modifier
-                .animateContentSize()
-                .padding(8.dp)
-                .clickable {
-                    onClick(article.hashCode())
-                },
-            shape = RoundedCornerShape(8.dp),
-            elevation = 8.dp
-        ) {
-            Row {
+        Row {
 
-                ArticleInfo(
-                    article = article,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(4.dp)
-                )
-            }
+
+            /*ImageCard(
+                imageLink = article.url!!, modifier = Modifier
+                    .fillMaxWidth(0.35f)
+            )*/
+
+            ArticleInfo(
+                article = article,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(4.dp)
+            )
         }
     }
-
 }
+
 
 @Composable
 fun ArticleInfo(
@@ -67,7 +68,7 @@ fun ArticleInfo(
         horizontalAlignment = alignment
     ) {
         Text(
-            text = article.title!!,
+            text = "Article Title : ${article.author}",
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.h6,
             maxLines = 1,
