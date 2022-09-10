@@ -18,7 +18,7 @@ class ArticleRepositoryImpl @Inject constructor(
 ) : ArticleRepository {
     override suspend fun getTechCrunchNews(source: String?): Flow<PagingData<Article>> {
 
-        return Pager(PagingConfig(pageSize = 20)) {
+        return Pager(PagingConfig(pageSize = 50)) {
             ArticlePagingSource(apiService = apiService)
         }.flow
     }
