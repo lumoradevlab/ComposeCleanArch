@@ -25,16 +25,15 @@ class ArticleListViewModel @Inject constructor(
         get() = _articleListState
 
     private val handler = CoroutineExceptionHandler { _, exception ->
-        _articleListState.value.isLoading = false
+        _articleListState.value.loading = false
         _articleListState.value = ArticleListState(
-            errorMessage = exception.message!!
+            errorMsg = exception.message!!
         )
     }
 
     init {
         getArticles()
     }
-
 
     private fun getArticles() = viewModelScope.launch(handler) {
         val response = articleUseCase().cachedIn(viewModelScope)
