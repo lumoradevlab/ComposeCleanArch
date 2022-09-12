@@ -1,4 +1,4 @@
-package dev.roshana.presentation.uiComponent
+package dev.roshana.presentation.uiComponent.progressbar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,14 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 
 @Composable
-@Preview(showSystemUi = true)
-fun DialogCircularProgressBar() {
+fun DialogCircularProgressBar(
+    modifier: Modifier = Modifier
+) {
     Dialog(
         onDismissRequest = { },
         DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)

@@ -19,7 +19,7 @@ object Versions {
     const val hiltViewModel = "1.0.0-alpha03"
     const val arch = "2.2.0"
     const val archTest = "2.1.0"
-    const val material = "1.0.0"
+    const val material = "1.6.1"
     const val constraintLayout = "1.1.3"
     const val room = "2.4.1"
     const val dagger = "2.25.4"

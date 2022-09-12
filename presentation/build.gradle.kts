@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":data"))
 
     implementation(Dependencies.ComposeLibs.coreKtx)
+    implementation(Dependencies.CommonLibs.material)
 
     /** compose
      **/

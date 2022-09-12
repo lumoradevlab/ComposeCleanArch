@@ -3,6 +3,7 @@ package dev.roshana.buildsrc
 object Dependencies {
 
     object CommonLibs {
+        const val material = "com.google.android.material:material:${Versions.material}"
         const val coroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         const val coroutinesAndroid =

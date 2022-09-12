@@ -86,7 +86,7 @@ fun ArticlesListColumn(
                                 val errorText =
                                     if (errorMessage.error.localizedMessage!!
                                             .contains("404")
-                                    ) "Character not Found"
+                                    ) "Article not Found"
                                     else
                                         errorMessage.error.localizedMessage
                                 Text(errorText)
