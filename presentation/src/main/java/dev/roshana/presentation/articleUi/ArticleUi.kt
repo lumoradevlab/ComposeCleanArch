@@ -1,5 +1,6 @@
 package dev.roshana.presentation.articleUi
 
+import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
@@ -12,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -24,12 +26,15 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @Composable
 fun ArticleUI(article: Article, modifier: Modifier = Modifier, onClick: (Int) -> Unit) {
 
+    val context = LocalContext.current
     Card(
         modifier = modifier
             .animateContentSize()
             .padding(8.dp)
             .clickable {
-                onClick(article.hashCode())
+                Toast
+                    .makeText(context, "${article.title}", Toast.LENGTH_LONG)
+                    .show()
             },
         shape = RoundedCornerShape(8.dp),
         elevation = 8.dp

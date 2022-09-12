@@ -92,4 +92,13 @@ dependencies {
     implementation(Dependencies.CommonLibs.gson)
     implementation(Dependencies.CommonLibs.kotlinSerialConverter)
     implementation(Dependencies.CommonLibs.jsonSerialization)
+
+    /** testing
+     **/
+    testImplementation(Dependencies.TestLibs.junit)
+    androidTestImplementation(Dependencies.TestLibs.extJunit)
+    androidTestImplementation(Dependencies.TestLibs.espresso)
+    androidTestImplementation(Dependencies.TestLibs.composeUiJunit)
+    debugImplementation(Dependencies.TestLibs.composeUiTooling)
+    debugImplementation(Dependencies.TestLibs.composeUiTestManifest)
 }
