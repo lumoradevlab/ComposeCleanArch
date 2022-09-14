@@ -44,4 +44,5 @@ object Versions {
     const val coil = "2.2.1"
     const val coilImage = "1.6.1"
     const val accompanist = "0.24.2-alpha"
+    const val dataStore = "1.0.0"
 }

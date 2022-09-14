@@ -42,6 +42,7 @@ object Dependencies {
         const val coilImage = "com.github.skydoves:landscapist-coil:${Versions.coilImage}"
         const val accompanistPager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
         const val accompanistIndicator = "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist}"
+        const val dataStore = "androidx.datastore:datastore-preferences:${Versions.dataStore}"
 
 
     }

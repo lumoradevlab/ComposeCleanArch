@@ -44,6 +44,7 @@ dependencies {
      **/
     implementation(Dependencies.ComposeLibs.coreKtx)
     implementation(Dependencies.ComposeLibs.composePaging)
+    implementation(Dependencies.CommonLibs.dataStore)
 
     /** hilt - dagger
      **/
