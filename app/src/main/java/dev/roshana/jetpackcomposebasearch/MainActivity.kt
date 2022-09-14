@@ -8,11 +8,10 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import dagger.hilt.android.AndroidEntryPoint
-import dev.roshana.jetpackcomposebasearch.ui.theme.JetpackComposeBaseArchTheme
+import dev.roshana.presentation.uiComponent.ui.theme.JetpackComposeBaseArchTheme
 import dev.roshana.presentation.articleUi.ArticleListViewModel
 
 @AndroidEntryPoint

@@ -55,6 +55,8 @@ dependencies {
 
     implementation(Dependencies.ComposeLibs.coreKtx)
     implementation(Dependencies.CommonLibs.material)
+    implementation(Dependencies.CommonLibs.accompanistPager)
+    implementation(Dependencies.CommonLibs.accompanistIndicator)
 
     /** compose
      **/

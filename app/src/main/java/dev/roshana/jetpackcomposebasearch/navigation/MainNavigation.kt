@@ -9,8 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import dev.roshana.presentation.articleUi.ArticlesListScreen
 import dev.roshana.presentation.locationUi.LocationScreen
-import dev.roshana.presentation.navigation.Articles
-import dev.roshana.presentation.navigation.Locations
+import dev.roshana.presentation.navigation.Screens
+import dev.roshana.presentation.welcomeUi.WelcomeScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -21,16 +21,20 @@ fun MainNavigation(navHostController: NavHostController, modifier: Modifier = Mo
 
     NavHost(
         navController = navHostController,
-        startDestination = Articles.ARTICLESLIST, modifier = modifier
+        startDestination = Screens.WelcomeScreen.route, modifier = modifier
     ) {
         /*articleGraph(navHostController = navHostController)
         locationGraph(navHostController = navHostController)*/
 
-        composable(Articles.ARTICLESLIST) {
+        composable(Screens.WelcomeScreen.route) {
+            WelcomeScreen(navHostController = navHostController)
+        }
+
+        composable(Screens.ArticleListScreen.route) {
             ArticlesListScreen()
         }
 
-        composable(Locations.LOCATIONLIST) {
+        composable(Screens.LocationScreen.route) {
             LocationScreen()
         }
     }

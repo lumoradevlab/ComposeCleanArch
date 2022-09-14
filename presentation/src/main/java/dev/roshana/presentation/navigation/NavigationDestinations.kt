@@ -1,5 +1,10 @@
 package dev.roshana.presentation.navigation
 
+object Welcome {
+    const val WELCOMEGRAPH = "welcome"
+
+}
+
 object Articles {
     const val ARTICLEGRAPH = "article"
     const val ARTICLESLIST = "articlelist"

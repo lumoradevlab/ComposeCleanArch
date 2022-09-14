@@ -1,4 +1,4 @@
-package dev.roshana.jetpackcomposebasearch.ui.theme
+package dev.roshana.presentation.uiComponent.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

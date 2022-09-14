@@ -43,4 +43,5 @@ object Versions {
     const val picasso = "2.8"
     const val coil = "2.2.1"
     const val coilImage = "1.6.1"
+    const val accompanist = "0.24.2-alpha"
 }
