@@ -69,7 +69,7 @@ dependencies {
     implementation(Dependencies.ComposeLibs.composeNav)
     implementation(Dependencies.ComposeLibs.composePaging)
     implementation(Dependencies.ComposeLibs.composeAnimNavigation)
-
+    implementation(Dependencies.ComposeLibs.coreSplash)
 
     /** hilt - dagger
      **/

@@ -45,4 +45,5 @@ object Versions {
     const val coilImage = "1.6.1"
     const val accompanist = "0.24.2-alpha"
     const val dataStore = "1.0.0"
+    const val coreSplash = "1.0.0"
 }

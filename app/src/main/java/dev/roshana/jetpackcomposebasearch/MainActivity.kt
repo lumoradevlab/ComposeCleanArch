@@ -8,15 +8,17 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import dagger.hilt.android.AndroidEntryPoint
-import dev.roshana.presentation.uiComponent.ui.theme.JetpackComposeBaseArchTheme
 import dev.roshana.presentation.articleUi.ArticleListViewModel
+import dev.roshana.presentation.uiComponent.ui.theme.JetpackComposeBaseArchTheme
+import dev.roshana.presentation.welcomeUi.WelcomeViewModel
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
 
     @OptIn(
         ExperimentalMaterialApi::class,
@@ -24,6 +26,7 @@ class MainActivity : ComponentActivity() {
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             JetpackComposeBaseArchTheme {
                 BaseContent()

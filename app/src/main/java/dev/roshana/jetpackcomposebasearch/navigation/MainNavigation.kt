@@ -17,11 +17,15 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
-fun MainNavigation(navHostController: NavHostController, modifier: Modifier = Modifier) {
+fun MainNavigation(
+    navHostController: NavHostController,
+    modifier: Modifier = Modifier,
+    startDestination: String
+) {
 
     NavHost(
         navController = navHostController,
-        startDestination = Screens.WelcomeScreen.route, modifier = modifier
+        startDestination = startDestination, modifier = modifier
     ) {
         /*articleGraph(navHostController = navHostController)
         locationGraph(navHostController = navHostController)*/

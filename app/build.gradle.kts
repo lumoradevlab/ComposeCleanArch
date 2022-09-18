@@ -79,6 +79,7 @@ dependencies {
         implementation(Dependencies.ComposeLibs.composeHilt)
         implementation(Dependencies.ComposeLibs.composePaging)
         implementation(Dependencies.ComposeLibs.composeAnimNavigation)
+        implementation(Dependencies.ComposeLibs.coreSplash)
 
 
 

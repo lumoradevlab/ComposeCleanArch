@@ -15,5 +15,5 @@ class AppModule() {
 
     @Provides
     @Singleton
-    internal open fun providesContext(@ApplicationContext context: Context) = context.applicationContext
+    fun providesContext(@ApplicationContext context: Context) = context.applicationContext
 }
