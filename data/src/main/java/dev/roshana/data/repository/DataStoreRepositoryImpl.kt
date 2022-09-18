@@ -12,13 +12,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
-    name = "on_boarding_pref"
-)
-
-
-class DataStoreRepositoryImpl(context: Context) : DataStoreRepository {
+@Singleton
+class DataStoreRepositoryImpl @Inject constructor(val context: Context) : DataStoreRepository {
 
     private object PreferencesKey {
         val onBoardingKey = booleanPreferencesKey(name = "on_boarding_completed")
@@ -49,3 +47,6 @@ class DataStoreRepositoryImpl(context: Context) : DataStoreRepository {
     }
 }
 
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "on_boarding_pref"
+)

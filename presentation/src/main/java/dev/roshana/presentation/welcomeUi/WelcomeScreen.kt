@@ -1,5 +1,6 @@
 package dev.roshana.presentation.welcomeUi
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
@@ -15,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.*
 import dev.roshana.presentation.navigation.Screens
@@ -28,6 +30,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @Composable
 fun WelcomeScreen(navHostController: NavHostController) {
     val context = LocalContext.current
+    val viewModel: WelcomeViewModel = hiltViewModel()
 
     val pages = listOf(
         OnBoardingPage.First,
@@ -60,6 +63,7 @@ fun WelcomeScreen(navHostController: NavHostController) {
         FinishButton(modifier = Modifier.weight(1f), pagerState = pagerState) {
             // Note : need to pop back to close app from home page
             // otherwise it will return to last onBoarding page when you click back.
+            viewModel.saveOnBoardingState(completed = true)
             navHostController.popBackStack()
             navHostController.navigate(Screens.ArticleListScreen.route)
         }

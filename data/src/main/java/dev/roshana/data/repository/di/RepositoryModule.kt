@@ -9,6 +9,7 @@ import dev.roshana.data.network.api.ApiService
 import dev.roshana.data.repository.ArticleRepositoryImpl
 import dev.roshana.data.repository.DataStoreRepositoryImpl
 import dev.roshana.domain.repositories.ArticleRepository
+import dev.roshana.domain.repositories.DataStoreRepository
 import retrofit2.Retrofit
 
 @Module
@@ -33,5 +34,5 @@ object RepositoryModule {
     @Provides
     fun providesDataStoreRepository(
         context: Context
-    ) = DataStoreRepositoryImpl(context = context)
+    ): DataStoreRepository = DataStoreRepositoryImpl(context = context)
 }
