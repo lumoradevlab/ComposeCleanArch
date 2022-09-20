@@ -6,6 +6,8 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("kotlin-parcelize")
+
 }
 
 android {
@@ -68,5 +70,13 @@ dependencies {
     implementation(Dependencies.CommonLibs.coroutines)
     implementation(Dependencies.CommonLibs.coroutinesAndroid)
     implementation(Dependencies.CommonLibs.coroutineAdapter)
+
+    /** Room
+     **/
+    implementation(Dependencies.CommonLibs.room)
+    implementation(Dependencies.CommonLibs.roomPagingCompose)
+    implementation(Dependencies.CommonLibs.roomKtx)
+    kapt(Dependencies.CommonLibs.roomCompiler)
+
 
 }

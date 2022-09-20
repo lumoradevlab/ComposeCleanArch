@@ -21,7 +21,7 @@ object Versions {
     const val archTest = "2.1.0"
     const val material = "1.6.1"
     const val constraintLayout = "1.1.3"
-    const val room = "2.4.1"
+    const val room = "2.4.2"
     const val dagger = "2.25.4"
     const val okHttp = "4.10.0"
     const val gson = "2.8.6"

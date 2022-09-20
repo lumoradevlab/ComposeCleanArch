@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -61,6 +62,12 @@ dependencies {
     implementation(Dependencies.CommonLibs.gson)
     implementation(Dependencies.CommonLibs.kotlinSerialConverter)
     implementation(Dependencies.CommonLibs.jsonSerialization)
+
+    /** Room
+     **/
+    /*implementation(Dependencies.CommonLibs.room)
+    implementation(Dependencies.CommonLibs.roomPagingCompose)
+    kapt(Dependencies.CommonLibs.roomCompiler)*/
 
     /** testing
      **/

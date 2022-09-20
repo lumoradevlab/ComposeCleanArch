@@ -40,10 +40,18 @@ object Dependencies {
         const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
         const val coil = "io.coil-kt:coil-compose:${Versions.coil}"
         const val coilImage = "com.github.skydoves:landscapist-coil:${Versions.coilImage}"
-        const val accompanistPager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
-        const val accompanistIndicator = "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist}"
+        const val accompanistPager =
+            "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
+        const val accompanistIndicator =
+            "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist}"
         const val dataStore = "androidx.datastore:datastore-preferences:${Versions.dataStore}"
 
+        const val room = "androidx.room:room-runtime:${Versions.room}"
+        const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+        const val roomPagingCompose = "androidx.room:room-paging:${Versions.room}"
+        const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+        const val roomGuava = "androidx.room:room-guava:${Versions.room}"
+        const val roomTest = "androidx.room:room-testing:${Versions.room}"
 
     }
 
@@ -63,7 +71,8 @@ object Dependencies {
         const val composeNav = "androidx.navigation:navigation-compose:${Versions.composeNav}"
         const val composePaging = "androidx.paging:paging-compose:${Versions.composePaging}"
         const val composeHilt = "androidx.hilt:hilt-navigation-compose:${Versions.composeHilt}"
-        const val composeAnimNavigation = "com.google.accompanist:accompanist-navigation-animation:${Versions.composeAnimNav}"
+        const val composeAnimNavigation =
+            "com.google.accompanist:accompanist-navigation-animation:${Versions.composeAnimNav}"
         const val coreSplash = "androidx.core:core-splashscreen:${Versions.coreSplash}"
     }
 
