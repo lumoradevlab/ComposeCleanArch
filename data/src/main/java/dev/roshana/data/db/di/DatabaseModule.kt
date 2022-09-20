@@ -6,6 +6,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.roshana.data.db.AppDatabase
+import dev.roshana.data.preference.Preference
+import dev.roshana.data.preference.PreferenceImpl
 import javax.inject.Singleton
 
 @Module
@@ -14,7 +16,12 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-     public fun provideDb(app: Application): AppDatabase {
+    fun provideDb(app: Application): AppDatabase {
         return AppDatabase.getInstance(app)
+    }
+
+    @Provides
+    fun providePreference(app: Application): Preference {
+        return PreferenceImpl(app)
     }
 }
