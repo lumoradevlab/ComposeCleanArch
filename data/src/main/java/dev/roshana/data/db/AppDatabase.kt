@@ -8,6 +8,10 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import dev.roshana.data.network.models.dto.ArticleDto
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 /**
  * Main database description.
  */

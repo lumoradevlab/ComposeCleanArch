@@ -13,6 +13,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 @HiltViewModel
 class WelcomeViewModel @Inject constructor(
     private val dataStoreUseCase: DataStoreUseCase

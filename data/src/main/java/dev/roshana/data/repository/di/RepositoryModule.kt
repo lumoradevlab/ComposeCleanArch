@@ -12,6 +12,10 @@ import dev.roshana.domain.repositories.ArticleRepository
 import dev.roshana.domain.repositories.DataStoreRepository
 import retrofit2.Retrofit
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {

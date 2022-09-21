@@ -3,6 +3,10 @@ package dev.roshana.data.repository.base
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 open class BaseRepository {
 
     suspend fun <T> safeApiCall(

@@ -6,6 +6,10 @@ import dev.roshana.domain.repositories.ArticleRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 class ArticleUseCase @Inject constructor(
     private val articleRepository: ArticleRepository
 ) {

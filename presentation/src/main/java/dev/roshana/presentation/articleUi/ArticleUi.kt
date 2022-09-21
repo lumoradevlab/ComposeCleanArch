@@ -20,6 +20,10 @@ import androidx.compose.ui.unit.dp
 import dev.roshana.domain.models.article.Article
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 @OptIn(ExperimentalCoroutinesApi::class)
 @ExperimentalMaterialApi
 @ExperimentalAnimationApi

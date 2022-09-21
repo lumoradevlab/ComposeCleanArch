@@ -1,5 +1,9 @@
 package dev.roshana.domain.models.article
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 data class Article(
     val author: String? = null,
     val title: String? = null,

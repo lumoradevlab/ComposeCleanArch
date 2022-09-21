@@ -1,6 +1,5 @@
 package dev.roshana.presentation.welcomeUi
 
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
@@ -23,6 +22,9 @@ import dev.roshana.presentation.navigation.Screens
 import dev.roshana.presentation.uiComponent.ui.theme.lightBlue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+/** PariSa;
+coding and smoking ;)
+ **/
 
 @OptIn(ExperimentalCoroutinesApi::class, ExperimentalPagerApi::class)
 @ExperimentalMaterialApi

@@ -5,6 +5,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import dev.roshana.domain.BuildConfig
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 fun isDebugMode(): Boolean {
     if (BuildConfig.DEBUG)
         return true

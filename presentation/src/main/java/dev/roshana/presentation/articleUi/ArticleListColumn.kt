@@ -18,6 +18,10 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
 import dev.roshana.domain.models.article.Article
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 @OptIn(ExperimentalMaterialApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun ArticlesListColumn(

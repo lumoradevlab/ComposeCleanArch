@@ -5,6 +5,10 @@ import androidx.paging.PagingState
 import dev.roshana.data.network.api.ApiService
 import dev.roshana.domain.models.article.Article
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 class ArticlePagingSource(
     private val apiService: ApiService
 ) : PagingSource<Int, Article>() {

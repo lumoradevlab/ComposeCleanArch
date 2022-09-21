@@ -25,6 +25,10 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun BottomNavigationBar(navHostController: NavHostController) {

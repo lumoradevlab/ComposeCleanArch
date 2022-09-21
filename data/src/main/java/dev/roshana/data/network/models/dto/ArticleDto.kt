@@ -6,6 +6,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 @Keep
 @Parcelize
 @Entity(tableName = "article")

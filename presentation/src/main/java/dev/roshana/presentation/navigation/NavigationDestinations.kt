@@ -1,8 +1,11 @@
 package dev.roshana.presentation.navigation
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 object Welcome {
     const val WELCOMEGRAPH = "welcome"
-
 }
 
 object Articles {

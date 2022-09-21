@@ -10,6 +10,10 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 class NoConnectivityException : IOException() {
     override val message: String
         get() = "عدم اتصال به اینترنت"

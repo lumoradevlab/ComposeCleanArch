@@ -5,6 +5,10 @@ import dev.roshana.jetpackcomposebasearch.R
 import dev.roshana.presentation.navigation.Articles
 import dev.roshana.presentation.navigation.Locations
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 sealed class NavigationItem(
     var title: String,
     var screen_route: String,

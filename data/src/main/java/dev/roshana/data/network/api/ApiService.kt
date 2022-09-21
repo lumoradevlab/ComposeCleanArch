@@ -6,6 +6,10 @@ import dev.roshana.domain.models.ResponseWrapper
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 interface ApiService {
 
     @GET(TOP_HEAD_LINES)

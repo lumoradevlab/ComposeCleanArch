@@ -17,6 +17,10 @@ import dev.roshana.presentation.uiComponent.ui.theme.JetpackComposeBaseArchTheme
 import dev.roshana.presentation.welcomeUi.WelcomeViewModel
 import javax.inject.Inject
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

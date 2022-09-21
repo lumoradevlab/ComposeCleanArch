@@ -3,6 +3,10 @@ package dev.roshana.data.repository.utils
 import android.util.Log
 import java.lang.Exception
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 fun getPageIntFromUrl(url: String): Int? {
     return try {
         url.substringAfterLast("=").toInt()

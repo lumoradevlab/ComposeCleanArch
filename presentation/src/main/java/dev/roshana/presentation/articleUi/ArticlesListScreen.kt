@@ -23,6 +23,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+/** PariSa;
+coding and smoking ;)
+ **/
+
 @OptIn(ExperimentalCoroutinesApi::class)
 @ExperimentalMaterialApi
 @ExperimentalAnimationApi
