@@ -1,7 +1,7 @@
 package dev.lumora.composearch.app.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -64,6 +64,6 @@ private data class Tab(
 )
 
 private val TOP_LEVEL_TABS = listOf(
-    Tab(ArticlesRoute, ArticlesRoute::class, "Headlines", Icons.Filled.List),
+    Tab(ArticlesRoute, ArticlesRoute::class, "Headlines", Icons.AutoMirrored.Filled.List),
     Tab(SettingsRoute, SettingsRoute::class, "Settings", Icons.Filled.Settings),
 )
