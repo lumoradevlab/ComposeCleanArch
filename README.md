@@ -50,7 +50,7 @@ git clone https://github.com/lumoradevlab/ComposeCleanArch.git
 Open in Android Studio and let Gradle sync.
 
 **Add a NewsAPI key.** Get a free one at [newsapi.org](https://newsapi.org/register), then set it
-in `data/src/main/java/dev/roshana/data/network/api/ArticlePagingSource.kt`:
+in `data/src/main/java/dev/roshana/data/repository/pagingSource/ArticlePagingSource.kt`:
 
 ```kotlin
 apiKey = "YOUR_API_KEY"
