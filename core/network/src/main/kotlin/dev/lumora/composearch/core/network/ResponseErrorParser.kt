@@ -1,3 +1,9 @@
+/*
+ * ComposeCleanArch — Copyright (c) 2026 Parisa Hazhirghader
+ *
+ * Licensed under the GNU Affero General Public License v3.0 (see LICENSE).
+ * A commercial license is available for proprietary use — see NOTICE.
+ */
 package dev.lumora.composearch.core.network
 
 import com.google.gson.JsonArray
@@ -29,8 +35,8 @@ class ResponseErrorParser @Inject constructor() {
             ?: return ResponseError(rawBody.trim().take(MAX_RAW_LEN), code, raw = rawBody)
 
         val fieldErrors = obj.fieldErrorsOf()
-        // A validation error carries the specific, user-facing text per field (this
-        // API nests it under `result`, e.g. `result.captcha`) — that is far more
+        // A validation error carries the specific, user-facing text per field (some
+        // APIs nest it under `result`, e.g. `result.email`) — that is far more
         // useful than the generic envelope message, so prefer it when present.
         val message = fieldErrors.values.firstOrNull()?.firstOrNull()
             ?: MESSAGE_KEYS.firstNotNullOfOrNull { obj.stringAt(it) }
@@ -60,7 +66,7 @@ class ResponseErrorParser @Inject constructor() {
 
     /**
      * Reads per-field validation messages. Handles both the `{ "errors": { "field":
-     * ["msg", …] } }` shape and this API's `{ "result": { "field": "msg" } }` shape,
+     * ["msg", …] } }` shape and the `{ "result": { "field": "msg" } }` shape,
      * where each value is a single string or a list of strings.
      */
     private fun JsonObject.fieldErrorsOf(): Map<String, List<String>> {

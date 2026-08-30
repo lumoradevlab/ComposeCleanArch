@@ -1,3 +1,9 @@
+/*
+ * ComposeCleanArch — Copyright (c) 2026 Parisa Hazhirghader
+ *
+ * Licensed under the GNU Affero General Public License v3.0 (see LICENSE).
+ * A commercial license is available for proprietary use — see NOTICE.
+ */
 package dev.lumora.composearch.core.query
 
 import dev.lumora.composearch.core.common.result.HttpStatusException
@@ -87,7 +93,7 @@ class QueryTest {
             val gate = CompletableDeferred<Unit>()
             var fetches = 0
             val entry = QueryEntry(
-                key = "balances",
+                key = "headlines",
                 fetcher = { gate.await(); "value-${++fetches}" },
                 staleTime = 0L,
                 cacheTime = Long.MAX_VALUE,
@@ -184,7 +190,7 @@ class QueryTest {
         runTest(UnconfinedTestDispatcher()) {
             var attempts = 0
             val entry = QueryEntry<String>(
-                key = "order",
+                key = "submit",
                 fetcher = {
                     attempts++
                     throw HttpError(httpStatusCode = 400) // bad request — deterministic
@@ -210,8 +216,8 @@ class QueryTest {
         assertEquals(true, isRetryable(HttpError(500)))
         assertEquals(true, isRetryable(HttpError(503)))
 
-        // Deterministic — must NOT retry. For a write (Buy/Withdraw/Transfer) re-firing
-        // one of these risks a duplicate operation, so the mutation path stops here.
+        // Deterministic — must NOT retry. For a write (a payment, an order, a transfer)
+        // re-firing one of these risks a duplicate operation, so the mutation path stops here.
         assertEquals(false, isRetryable(HttpError(400)))
         assertEquals(false, isRetryable(HttpError(401)))
         assertEquals(false, isRetryable(HttpError(409)))

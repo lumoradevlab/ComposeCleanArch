@@ -1,3 +1,9 @@
+/*
+ * ComposeCleanArch — Copyright (c) 2026 Parisa Hazhirghader
+ *
+ * Licensed under the GNU Affero General Public License v3.0 (see LICENSE).
+ * A commercial license is available for proprietary use — see NOTICE.
+ */
 package dev.lumora.composearch.core.query
 
 import dev.lumora.composearch.core.common.dispatchers.IoDispatcher
@@ -54,7 +60,7 @@ class QueryClient @Inject constructor(
         entries[key]?.invalidate()
     }
 
-    /** Invalidate every key matching [pattern] (a regex) — e.g. `"wallet\\..*"`. */
+    /** Invalidate every key matching [pattern] (a regex) — e.g. `"articles\\..*"`. */
     fun invalidateMatching(pattern: String) {
         val regex = pattern.toRegex()
         entries.keys.asSequence()

@@ -1,3 +1,9 @@
+/*
+ * ComposeCleanArch — Copyright (c) 2026 Parisa Hazhirghader
+ *
+ * Licensed under the GNU Affero General Public License v3.0 (see LICENSE).
+ * A commercial license is available for proprietary use — see NOTICE.
+ */
 package dev.lumora.composearch.core.query
 
 import androidx.compose.runtime.Composable
@@ -35,8 +41,8 @@ data class MutationState<R>(
 )
 
 /**
- * Handle returned by [useMutation] — drives a write (buy, withdraw, …) and exposes
- * its progress. Call it like a function: `buy(order)`.
+ * Handle returned by [useMutation] — drives a write (submit, delete, …) and exposes
+ * its progress. Call it like a function: `save(draft)`.
  */
 data class MutationResult<P, R>(
     val mutate: (P) -> Unit,

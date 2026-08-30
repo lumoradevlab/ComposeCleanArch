@@ -110,4 +110,15 @@ never committed, and no endpoint signature carries it.
 
 ## License
 
-Not yet licensed. Feel free to read and learn from it; open an issue if you'd like a license added.
+**AGPL-3.0** — see [LICENSE](LICENSE).
+
+In short: you're free to use, study, modify, and share this code, but anything you build on it and
+then distribute (or run as a network service) has to be released under the AGPL-3.0 as well. That
+keeps derivatives open rather than letting the work be absorbed into a closed product.
+
+If that doesn't fit your use — you want to build something proprietary on it — a **commercial
+license** is available. See [NOTICE](NOTICE) or contact parisahazhirghader@gmail.com.
+
+Note this covers the *code*. Architectural ideas — the module layout, the hooks-instead-of-ViewModels
+approach, the query cache design — aren't copyrightable, and you're welcome to learn from them and
+build your own.
