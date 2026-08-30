@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Compose owns the real theming (see :core:designsystem AppTheme). This exists only
-         so the manifest has a launch theme before the first frame composes. -->
-    <style name="Theme.ComposeCleanArch" parent="android:Theme.Material.Light.NoActionBar" />
+    <!--
+      The launch theme. Compose owns the real theming (see :core:designsystem AppTheme);
+      this exists so the window has a branded background and a splash icon in the moment
+      before the first frame composes.
+
+      Parented on the splash-screen theme so the system draws the launch screen itself —
+      no splash Activity, and no risk of the branded frame outliving the content.
+      postSplashScreenTheme is what the window switches to once content is ready.
+    -->
+    <style name="Theme.ComposeCleanArch" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/brand_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.ComposeCleanArch.Main</item>
+    </style>
+
+    <!-- What the window becomes after the splash hands off. Deliberately bare: Compose
+         draws everything from here on, and the dark background prevents a white flash
+         between the splash and the first composed frame. -->
+    <style name="Theme.ComposeCleanArch.Main" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/brand_background</item>
+    </style>
 </resources>

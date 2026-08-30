@@ -14,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import dagger.hilt.android.AndroidEntryPoint
 import dev.lumora.composearch.app.ui.ComposeCleanArchApp
@@ -40,6 +41,9 @@ class MainActivity : ComponentActivity() {
     @Inject lateinit var themeStore: ThemeStore
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Must run before super.onCreate() — it swaps the launch theme for the
+        // post-splash theme, so calling it later would leave the branded window in place.
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {

@@ -72,6 +72,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
+    // Draws the branded launch screen and hands off to the first composed frame.
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.bundles.compose)
 
     debugImplementation(libs.compose.ui.tooling)
