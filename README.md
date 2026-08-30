@@ -122,3 +122,15 @@ license** is available. See [NOTICE](NOTICE) or contact parisahazhirghader@gmail
 Note this covers the *code*. Architectural ideas — the module layout, the hooks-instead-of-ViewModels
 approach, the query cache design — aren't copyrightable, and you're welcome to learn from them and
 build your own.
+
+### Credit
+
+If this project helped you — whether you built on the code or just borrowed the ideas — a link back
+is genuinely appreciated:
+
+> Architecture based on [ComposeCleanArch](https://github.com/lumoradevlab/ComposeCleanArch)
+> by Parisa Hazhirghader.
+
+This is a request, not a license condition: nothing obliges you to credit the ideas, and reusing them
+without attribution is entirely legal. It's asked for because the design took real work to get right,
+and a link is how anyone else finds their way here.
