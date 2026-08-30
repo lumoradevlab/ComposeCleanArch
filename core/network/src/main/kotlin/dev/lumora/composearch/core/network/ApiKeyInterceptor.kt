@@ -6,6 +6,7 @@
  */
 package dev.lumora.composearch.core.network
 
+import android.util.Log
 import javax.inject.Inject
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -30,7 +31,18 @@ class ApiKeyInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
         val key = config.apiKey
         val original = chain.request()
-        if (key.isBlank() || original.url.queryParameter(API_KEY_PARAM) != null) {
+        if (key.isBlank()) {
+            // A missing key otherwise surfaces as an opaque 401, which sends people
+            // looking for a bug in the auth layer. Say what is actually wrong, once.
+            Log.w(
+                "ApiKeyInterceptor",
+                "No API key configured — the request will likely fail with 401. " +
+                    "Copy local.properties.example to local.properties and set NEWS_API_KEY " +
+                    "(free key: https://newsapi.org/register), then rebuild.",
+            )
+            return chain.proceed(original)
+        }
+        if (original.url.queryParameter(API_KEY_PARAM) != null) {
             return chain.proceed(original)
         }
         val url = original.url.newBuilder().addQueryParameter(API_KEY_PARAM, key).build()

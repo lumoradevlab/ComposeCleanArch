@@ -26,9 +26,13 @@ enum class AppFlavor(
     val applicationIdSuffix: String? = null,
     val baseUrl: String,
 ) {
-    dev(applicationIdSuffix = ".dev", baseUrl = "https://api.dev.example.com/api/"),
-    staging(applicationIdSuffix = ".staging", baseUrl = "https://api.staging.example.com/api/"),
-    prod(baseUrl = "https://api.example.com/api/"),
+    // All three point at NewsAPI so the bundled example feature works in every variant
+    // out of the box. Replace these with your own per-environment hosts — that is the
+    // whole reason the flavors exist; the shape (one flavor per environment, URLs as
+    // BuildConfig fields) is what you are meant to keep.
+    dev(applicationIdSuffix = ".dev", baseUrl = "https://newsapi.org/v2/"),
+    staging(applicationIdSuffix = ".staging", baseUrl = "https://newsapi.org/v2/"),
+    prod(baseUrl = "https://newsapi.org/v2/"),
 }
 
 internal fun configureFlavors(commonExtension: CommonExtension<*, *, *, *, *, *>) {
