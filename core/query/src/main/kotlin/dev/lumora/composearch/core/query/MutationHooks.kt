@@ -41,8 +41,8 @@ data class MutationState<R>(
 )
 
 /**
- * Handle returned by [useMutation] — drives a write (buy, withdraw, …) and exposes
- * its progress. Call it like a function: `buy(order)`.
+ * Handle returned by [useMutation] — drives a write (submit, delete, …) and exposes
+ * its progress. Call it like a function: `save(draft)`.
  */
 data class MutationResult<P, R>(
     val mutate: (P) -> Unit,
