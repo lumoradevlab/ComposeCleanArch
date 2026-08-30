@@ -129,7 +129,7 @@ If this project helped you — whether you built on the code or just borrowed th
 is genuinely appreciated:
 
 > Architecture based on [ComposeCleanArch](https://github.com/lumoradevlab/ComposeCleanArch)
-> by Parisa Hazhirghader.
+> by LumorDevLab.
 
 This is a request, not a license condition: nothing obliges you to credit the ideas, and reusing them
 without attribution is entirely legal. It's asked for because the design took real work to get right,
