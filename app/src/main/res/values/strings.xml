@@ -1,5 +1,3 @@
 <resources>
-    <string name="app_name">JetpackComposeBaseArch</string>
-    <string name="connectionError">اینترنت خود را بررسی نمایید و دوباره امتحان کنید</string>
-    <string name="socketError">متاسفانه ارتباط با سرور دچار اخلال شده است لطفا مجددا تلاش کنید</string>
+    <string name="app_name">ComposeCleanArch</string>
 </resources>

@@ -1,0 +1,48 @@
+# detekt config — OVERRIDES ONLY.
+#
+# `buildUponDefaultConfig = true` (set in the convention plugin) means detekt's
+# full default ruleset is active; this file only tweaks the deltas that fit a
+# Compose app. Regenerate the annotated defaults any time with:
+#   ./gradlew detektGenerateConfig
+
+config:
+  validation: true
+  warningsAsErrors: false
+
+# ktlint rules, run inside detekt via the detekt-formatting ruleset.
+formatting:
+  active: true
+  autoCorrect: true
+  MaximumLineLength:
+    maxLineLength: 120
+  ArgumentListWrapping:
+    active: false        # fights Compose's trailing-arg style
+  FunctionSignature:
+    active: false
+
+complexity:
+  LongMethod:
+    threshold: 80        # composables legitimately get long-ish
+  LongParameterList:
+    functionThreshold: 8 # composables take many slots/lambdas
+    constructorThreshold: 8
+  TooManyFunctions:
+    active: false
+
+style:
+  MagicNumber:
+    active: false        # dp / sp / color literals are everywhere in UI code
+  UnusedPrivateMember:
+    active: true         # part of "finding junk"
+    # @Preview / @Composable previews are invoked by tooling, not code — they are
+    # NOT junk, so don't let them drown out real unused-member findings.
+    ignoreAnnotated: ['Preview', 'Composable', 'PreviewParameter']
+  MaxLineLength:
+    maxLineLength: 120
+
+# @Composable functions are PascalCase by convention — don't flag them.
+naming:
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+  TopLevelPropertyNaming:
+    active: true

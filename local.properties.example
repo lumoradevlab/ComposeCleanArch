@@ -1,0 +1,6 @@
+# Copy to local.properties (git-ignored) and fill in.
+# Android SDK location:
+sdk.dir=/Users/you/Library/Android/sdk
+
+# NewsAPI key for the example feature — get a free one at https://newsapi.org/register
+NEWS_API_KEY=your_key_here
