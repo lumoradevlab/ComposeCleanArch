@@ -60,7 +60,7 @@ class QueryClient @Inject constructor(
         entries[key]?.invalidate()
     }
 
-    /** Invalidate every key matching [pattern] (a regex) — e.g. `"wallet\\..*"`. */
+    /** Invalidate every key matching [pattern] (a regex) — e.g. `"articles\\..*"`. */
     fun invalidateMatching(pattern: String) {
         val regex = pattern.toRegex()
         entries.keys.asSequence()

@@ -25,9 +25,10 @@ import kotlinx.coroutines.flow.map
  * ## Encryption
  * Tokens are stored as plain preferences here. That is fine for a template and for apps
  * whose token is short-lived and low-value; it is NOT fine for a banking/finance app.
- * To harden it, encrypt the values before writing (Tink AEAD with the keyset wrapped by
- * a master key in the Android Keystore) and decrypt on read — introduce a `TokenCipher`
- * interface and wrap the two accessors below. Nothing outside this class changes.
+ * To harden it, encrypt the values before writing (e.g. an AEAD primitive whose keyset
+ * is wrapped by a master key in the Android Keystore) and decrypt on read — introduce a
+ * `TokenCipher` interface and wrap the two accessors below. Nothing outside this class
+ * changes.
  */
 @Singleton
 class DataStoreSessionStore @Inject constructor(
