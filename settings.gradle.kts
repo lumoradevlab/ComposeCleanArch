@@ -1,20 +1,32 @@
 pluginManagement {
+    // The convention plugins (composearch.android.library, .feature, …) live here.
+    includeBuild("build-logic")
     repositories {
         gradlePluginPortal()
-        google()
         mavenCentral()
+        google()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
         mavenCentral()
+        google()
     }
 }
-rootProject.name = "JetpackComposeBaseArch"
+
+rootProject.name = "ComposeCleanArch"
+
 include(":app")
 
-include(":data")
-include(":domain")
-include(":presentation")
+// Core modules (shared infrastructure; no feature knows about another feature).
+include(":core:model")
+include(":core:common")
+include(":core:network")
+include(":core:datastore")
+include(":core:database")
+include(":core:query")
+include(":core:designsystem")
+include(":core:ui")
+include(":core:testing")

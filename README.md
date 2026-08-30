@@ -1,25 +1,40 @@
 # ComposeCleanArch
 
-A **Jetpack Compose + Clean Architecture** starter for Android, split into four Gradle modules.
-It fetches TechCrunch headlines from [NewsAPI](https://newsapi.org/) as a working example, so the
-architecture is demonstrated end to end rather than described in the abstract.
+A **Jetpack Compose** base app: a modular, layered Android architecture you can clone and start a
+real project from. It fetches TechCrunch headlines from [NewsAPI](https://newsapi.org/) as a working
+example, so the architecture is demonstrated end to end rather than described in the abstract.
 
-> ⚠️ **Work in progress.** This project is being updated — dependencies are pinned to older versions
-> (see [Status](#status)). Read it as a structural reference, not a drop-in template.
+The headline idea: **screens have no ViewModels.** Server state goes through a hand-rolled query
+cache (`useQuery` / `useMutation`, React-Query style), so a read-only screen is a hook call and a
+`QueryContent` block — no `uiState` class, no `LaunchedEffect { load() }`, no loading boolean.
 
 ---
 
 ## Module structure
 
 ```
-:app           → entry point, navigation host, Hilt application
-:presentation  → Compose screens, ViewModels, UI state
-:domain        → models, repository interfaces, use cases  (pure Kotlin logic)
-:data          → Retrofit, Room, DataStore, repository implementations
+:app                → entry point, navigation, hooks/, and all screens
+:core:model         → pure Kotlin domain models (no Android, no Gson)
+:core:common        → AppResult/AppError, dispatcher qualifiers, session contracts
+:core:network       → Retrofit/OkHttp infra + APIs, DTOs, mappers, repositories
+:core:query         → the query cache: QueryClient, useQuery, useMutation
+:core:datastore     → DataStore: session tokens, theme, onboarding
+:core:database      → shared Room infra for the optional persistent query tier
+:core:designsystem  → colour/type/spacing tokens + shared components
+:core:ui            → QueryContent, theme hooks (the query-aware UI layer)
+:core:testing       → shared test helpers
 ```
 
-Dependencies point **inward**: `:presentation` and `:data` know about `:domain`, but `:domain`
-knows about neither. Swapping the network layer doesn't touch a use case.
+Dependencies point **downward only**: `app → core:ui/query/network → core:common → core:model`.
+`:core:model` is a pure leaf, which is why DTO→model mappers live in `:core:network` (a mapper
+references a DTO, so the reverse would be a cycle).
+
+There are deliberately **no feature modules** — all UI lives in `:app`, all data in `:core:network`.
+A `composearch.android.feature` convention plugin is ready for the day a screen set earns its own
+module.
+
+📖 **[ARCHITECTURE.md](ARCHITECTURE.md)** is the real reference: the rules, the data-flow diagram, and
+the step-by-step recipe for adding a feature.
 
 ---
 
@@ -27,17 +42,15 @@ knows about neither. Swapping the network layer doesn't touch a use case.
 
 | Area | Implementation |
 |---|---|
-| UI | Jetpack Compose, Material, bottom-nav + Navigation Compose |
-| Architecture | Clean Architecture, MVVM, use cases per feature |
-| DI | Hilt — with its own module per layer (`AppModule`, `NetworkModule`, `DatabaseModule`, `RepositoryModule`, `UseCaseModule`) |
-| Networking | Retrofit + OkHttp, `ConnectivityInterceptor` for offline detection |
-| Paging | Paging 3 via a custom `ArticlePagingSource` |
-| Local storage | Room (`AppDatabase`, `ArticleDao`, type converters) + DataStore preferences |
-| State | `DataState` / `ResponseWrapper` wrappers, per-screen state classes |
-| Build | `buildSrc` module centralizing versions, dependencies, and build types |
-
-**Screens:** an onboarding/welcome flow, a paginated article list, and a location screen —
-each with its own navigation graph.
+| UI | Jetpack Compose, Material 3, type-safe Navigation Compose (`@Serializable` routes) |
+| Data fetching | Hand-rolled query cache — `useQuery` / `useCachedQuery` / `useMutation`, with TTL, dedup, invalidation, retry, interval refetch |
+| Networking | Retrofit + OkHttp with a `Resource` call adapter — **no per-call `safeApiCall`** |
+| Errors | One `AppError` type at the UI boundary; a shape-agnostic parser turns any error body into it |
+| DI | Hilt, one small module per area |
+| Local storage | DataStore (session, theme, onboarding) + Room infra for the persistent query tier |
+| Design system | Semantic colour/type/spacing tokens, light+dark, `themed()` helper |
+| Build | `build-logic` convention plugins, version catalog, dev/staging/prod flavors |
+| Quality | detekt + ktlint, Android Lint, dependency-analysis (`buildHealth`), LeakCanary in debug |
 
 ---
 
@@ -45,43 +58,53 @@ each with its own navigation graph.
 
 ```bash
 git clone https://github.com/lumoradevlab/ComposeCleanArch.git
+cd ComposeCleanArch
+cp local.properties.example local.properties
 ```
 
-Open in Android Studio and let Gradle sync.
+Then edit `local.properties`:
 
-**Add a NewsAPI key.** Get a free one at [newsapi.org](https://newsapi.org/register), then set it
-in `data/src/main/java/dev/roshana/data/repository/pagingSource/ArticlePagingSource.kt`:
-
-```kotlin
-apiKey = "YOUR_API_KEY"
+```properties
+sdk.dir=/Users/you/Library/Android/sdk
+NEWS_API_KEY=your_key_here     # free key: https://newsapi.org/register
 ```
 
-> 🔑 The key currently committed in this repo is public and will be rotated — supply your own.
-> Moving it into `local.properties` / `BuildConfig` is on the list below.
+Open in Android Studio and sync, or build from the terminal:
 
-**Requirements:** `minSdk 21` · `targetSdk 33` · JDK 11
+```bash
+./gradlew :app:assembleProdDebug     # or devDebug / stagingDebug
+./gradlew test                       # unit tests (no emulator needed)
+./gradlew detekt buildHealth         # quality gates
+```
+
+The key is read from `local.properties` into `BuildConfig` and attached by an interceptor — it is
+never committed, and no endpoint signature carries it.
+
+**Requirements:** `minSdk 24` · `compileSdk 34` · JDK 17+
 
 ---
 
-## Status
+## Using this as a base for your own app
 
-Version pins as of this README:
+1. Rename the package `dev.lumora.composearch` → yours (module namespaces, `applicationId`, source dirs).
+2. Rename the convention plugin ids (`composearch.*`) and `rootProject.name`.
+3. Replace the placeholder hosts in `build-logic/.../Flavors.kt`.
+4. Delete the example feature — `Article*` across `:core:model` / `:core:network`,
+   `:app/hooks/ArticleHooks.kt`, `:app/ui/articles/`, and their tests.
+5. Repaint `:core:designsystem` — `Color.kt` and `Type.kt` are the two files a rebrand touches.
+
+---
+
+## Versions
 
 | | Version |
 |---|---|
-| Kotlin | 1.5.31 |
-| Compose | 1.1.0-beta01 |
-| Gradle Plugin | 7.2.2 |
-| Hilt | 2.42 |
-| Room | 2.4.2 |
-
-### Planned
-
-- [ ] Upgrade Kotlin, Compose, and AGP to current stable
-- [ ] Move the API key out of source into `local.properties` → `BuildConfig`
-- [ ] Migrate `buildSrc` to a Gradle version catalog (`libs.versions.toml`)
-- [ ] Replace the placeholder unit/instrumented tests with real coverage
-- [ ] Material 3
+| Kotlin | 2.0.21 |
+| Compose BOM | 2024.06.00 |
+| Android Gradle Plugin | 8.9.0 |
+| Hilt | 2.52 |
+| Room | 2.6.1 |
+| Gradle | 8.11.1 |
 
 ---
 
