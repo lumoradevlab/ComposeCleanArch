@@ -9,6 +9,17 @@ config:
   validation: true
   warningsAsErrors: false
 
+# The project is AGPL-3.0 with a commercial option (see LICENSE / NOTICE), so every
+# source file must carry the notice — a copied file then travels with its terms.
+# detekt REPORTS a missing header rather than failing the build, because the
+# convention plugin sets ignoreFailures = true; flip that to false to make it a hard
+# gate. The header to paste lives in config/detekt/license-header.txt.
+comments:
+  AbsentOrWrongFileLicense:
+    active: true
+    licenseTemplateFile: 'license-header.txt'
+    licenseTemplateIsRegex: false
+
 # ktlint rules, run inside detekt via the detekt-formatting ruleset.
 formatting:
   active: true

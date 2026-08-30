@@ -1,0 +1,41 @@
+ComposeCleanArch
+Copyright (c) 2026 Parisa Hazhirghader
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along
+with this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+COMMERCIAL LICENSING
+--------------------
+
+The copyright holder retains full ownership of this work and offers it under a
+dual-licensing model:
+
+  1. The AGPL-3.0 terms above, for open-source use. Anything you build on this
+     code and distribute — or make available over a network — must itself be
+     released under the AGPL-3.0.
+
+  2. A separate commercial license, for use in proprietary or closed-source
+     products. This removes the copyleft obligation.
+
+If the AGPL does not suit your use, contact parisahazhirghader@gmail.com to
+discuss commercial terms.
+
+
+CONTRIBUTIONS
+-------------
+
+Because this project is dual-licensed, the copyright holder must be able to
+relicense the entire codebase. By submitting a contribution you agree to assign
+copyright in that contribution to the copyright holder, or to license it under
+terms that permit such relicensing. Contributions that cannot be relicensed
+cannot be merged.
