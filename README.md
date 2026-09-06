@@ -110,14 +110,15 @@ never committed, and no endpoint signature carries it.
 
 ## License
 
-**AGPL-3.0** — see [LICENSE](LICENSE).
+**Dual-licensed: AGPL-3.0, or a commercial licence for proprietary use.**
 
-In short: you're free to use, study, modify, and share this code, but anything you build on it and
-then distribute (or run as a network service) has to be released under the AGPL-3.0 as well. That
-keeps derivatives open rather than letting the work be absorbed into a closed product.
-
-If that doesn't fit your use — you want to build something proprietary on it — a **commercial
-license** is available. See [NOTICE](NOTICE) or contact parisahazhirghader@gmail.com.
+- **Open source (AGPL-3.0)** — free to use, study, modify, and share. Anything you build on it and
+  then distribute, or run as a network service, is released under the AGPL-3.0 too. That keeps
+  derivatives open rather than letting the work be absorbed into a closed product. See
+  [LICENSE](LICENSE).
+- **Building something proprietary?** A commercial licence removes the copyleft obligation
+  entirely. See [NOTICE](NOTICE) or email parisahazhirghader@gmail.com — this is the normal path
+  for a closed-source app, not an exception.
 
 Note this covers the *code*. Architectural ideas — the module layout, the hooks-instead-of-ViewModels
 approach, the query cache design — aren't copyrightable, and you're welcome to learn from them and
